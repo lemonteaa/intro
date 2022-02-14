@@ -43,6 +43,18 @@ They are filed under the github organization [hkitsmallpotato](https://github.co
 
 ## Libraries, Toys, and Experiments
 
+- Some cute, good old Lisp code snippet: [cl-lisp-lab](https://github.com/lemonteaa/cl-lisp-lab)
+- A small clojure library: [relabel](https://github.com/lemonteaa/relabel)
+- Just for fun: [rusty-raytracer](https://github.com/lemonteaa/rusty-raytracer), [twilio-ivr-fake-bank](https://github.com/lemonteaa/twilio_ivr_fake_bank)
+
+### WIP on other people's library
+
+- Proximal Policy Optimization: [keras-rl](https://github.com/lemonteaa/keras-rl)
+- Distributed mode for Clojure redis client: [Carmine](https://github.com/lemonteaa/carmine/commits/bpoweski-cluster)
+
+### Others
+
+- Experiment on compiling Streaming SQL onto Onyx: [onyx-streaming-sql](https://github.com/lemonteaa/onyx-streaming-sql)
 
 ## Drafts
 

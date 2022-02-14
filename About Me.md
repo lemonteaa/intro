@@ -67,14 +67,69 @@ In many ways, this short stint is a "preparatory job" for the real job next - as
 
 **Extra curricular activity: Reinforcement Learning, Containers/Kubernetes, Ansible, Vue, Clojure, Microservice, GraalVM, Research in Programming Language Theory, Enterprise Architecture and Design Pattern**
 
+#### Generalities
 By the time we get here, the list is getting real long.
 
 My job duty have expanded in scope unofficially - being responsible for a whole project, and taking ownership over a whole (multiple?) product lifecycles. At this point, cross-team collaboration has already become a background fact - in fact I find myself needing to work across the whole organization, and occasionally, *across organizations*, in order to carry out my job duty successfully. And all these while officially only carrying the title of *(Senior) Analyst Programmer* [2]. I would like to give special thank to the company for giving me this leeway - I believe this wouldn't have been possible at all in more Enterprisy settings where the regimetation and siloing is more strictly enforced.
 
 Due to my gradually gaining experience and technical ability, as well as being in a politically less powerless situation, I find myself, for the first time ever, having some sort of organizational *citizenship* and *agency*. *Citizenship* refers to the idea that one's personal interest is aligned with that of the company and so act for the long term common interest. An example would be taking initiative to try better ways of doing things, or implementing new internal tools/infras to make everyday life better. *Agency* refers to the ability to take those initiative, instead of always taking order from higher up passively. Again, this is only possible due to a lucky confluence of many factors - a small company, with transparency in most aspects, management being too busy sometimes to micromanage everything, to name a few. (TODO: add some warning)
 
+#### Legacy system modernization
 My first assignment is to modernize a legacy system by implementing a RESTful API in parallel, sharing the same underlying database. As part of my research, I come across Martin Fowler, and I am blown away by just about everything he says - in between Enterprise Architectural Patterns, CQRS (Command Query Responsibility Segegration), Event Sourcing, DDD (Domain Driven Design), DSL (Domain Specific Language), Microservice, and his thoughts on Legacy system replacement efforts, I would be plentifully supplied with ideas to munch over for many years to come.
 
+After completing the first assignment and having it deployed to production, I was then assigned to the team for maintaining the Cinema's Ticketing System. It is a complex distributed system with various booking channels each being their own, largely autonomous, subsystem. Aside from the usual rounds of concurrency issue, here there is additional consideration of replication, asynchronity, and the consistency-availibility tradeoff during partition event (made more subtle considering the need for walk-in booking in physical sites to take precedence). Thankfully, most bugs end up being resolved successfully. In future, this system would become the basic example I use as a reference while learning the principles of distributed systems from books and papers.
+
+Another aspect of this system is its sprawling nature - it spans across departmental and organizational boundaries with many integrations against third party system. Using the tracing skills I've acquired over previous jobs, I gradually gained a holistic understanding of each of its pieces. Sadly, after several changes of managements, it eventually become clear that the complexity have exceeded any economic sense in trying to refactor it and that a business decision was made to exit from this market. Although some subsystems are only rewritten from scratch instead of being removed, I was not assigned to this task.
+
+#### Internal Research/Tooling/Consulting
+
+From time to time, there is a need to implement something using new or unproven technologies or technique. I help out by writing Proof-Of-Concept and/or prototypes. This invovles emerging web API/standards.
+
+During downtime in between tasks, I look at the existing state of affair in the company and conduct experiments on tech, good practise, etc. In one instance, I managed to implement an internal tool to automate away some repetitive maintainence tasks.
+
+As the company have a relatively flat hierarchy and open culture, I also exchange views on technology trends and good practise with colleagues regularly. When called for, I advocate alongside colleagues for bringing in certain good practise that we believe are beneficial to the company. In one instance, I called into attention potential security vulnerability of other team's code.
+
+#### Privacy compliance
+
+The next big project that I am responsible for is to modify an existing legacy system so that it respects end user's privacy. I made a painstaking analysis of the current situation as well as the system flow, and found out that satisfying this requirement is much harder than expected due to the constraint of being unable to refactor it - I have to apply duct-tape so to speak while not modifying the overall structure of the codes, which was very messy.
+
+This means that I have to be extra careful, as this make any attempt at a close-to-mathemtical proof that the modified system does respect privacy almost impossible to do. Nonetheless, as this task is considered top pirority by management, I persevered and marched onward. Taking lessons from some of my failed projects back in College days due to over-ambition and the lack of an iterative approach, I tried to walk the thin line between being rigorous enough to not let minor issue that could still completely jeopardize privacy slip away, versus not making any progress due to over-insistence on perfection.
+
+At the end of the day, the task is said and done. Luckily, it is only an interim measures as it would later be completely replaced.
+
+#### Client Projects
+
+During the later phase of my tenure at this company, I am reassigned to two different "Client Projects". This company have both an in-house and a vendor role, helping client implement custom softwares.
+
+In the first one, I played a minor role as an Individual Contributor (IC) doing a few feature tickets in their sprint. This is the first time that I actually did modern frontend work using AngularJS plus webpack. I studied version 1 of Angular on my own research, and the company hired external training for version 2 of Angular.
+
+In the second one, I become the main developer responsible for meeting client demands alongside another junior colleague. In a relatively short amount of time, I have to understand enough of the whole system to become effective, as the features/changes demanded is relatively complex while also being on a tight deadline.
+
+It is here that the various "thread" we have previously come together:
+
+- My system level skill (together with knowledge of Java) become crucial to help me stay afloat
+- As the client is a large enterprise, and the system involves integration against their system, access to insider knowledge of their system and documentation become critical. Taking experience working with external/third parties in previous assignment, I navigated their bureacracy and helped their contact person understand their own system better. At the same time, I also help to manage expectation and assuage any fear they may have of us being unable to deliver.
+- I mentored my teammate by providing both general CS knowledge, as well as specific instruction to cover weak spots. My teammate learned, improved, and helped contribute to the project during a critical period, and as a result we meet the deadline against the odds.
+
+#### Extra-curricular
+
+I have been keeping an eye on technology trends throughout these jobs, and in these years it become clear to me that the industry is developing substantial depth. Therefore, I made it part of my career strategy to try to systematically explore emerging topics and catch up.
+
+**In the area of DevOps**, I have been motivated by 1) the relatively antiqued practise in all companies I've worked with thus far in terms of server administration and production deployment, and 2) the lack of, and difficulty in, introducing good practise (even the basic Unit test + Refactor + CI/CD trinity of virtue have been an uphill battle **even for orgnizations that officially recognized their importance and made it an official policy to try to implement them**).
+
+While I forgot exactly when was the first time I got in touch with the idea of container, I liked it a lot. Strangely, although I remember learning it relatively easily outside my job duty, the idea of containerising the systems I am assigned to in my job didn't occur to me - despite me "selling" these ideas to my colleagues in view of the problem with using long term virtual machines. Perhaps this is due to another idea, IaaC (Infrastructue as Code) also taking up my mental bandwidth. (Confession: I have secretly played with using Ansible to administer some development server at company)
+
+Kubernetes also went up in my radar, at first at the edge. However, as I keep coming back to it, I growed more liking for it later on.
+
+Regretably, there is a missed opportunity here. After my resignation from this last job, I was informed that the company has a plan to introduce modern DevOps practises. I wish the company success in this initiative.
+
+**In the area of System Architecture**, I have been motivated by being bored with the MVC architecture and wondering if there is alternatives. Perhaps more responsibly, my constant struggle with legacy system and code complexity have led me to consider the idea that MVC isn't always the optimal architecture for complex web app. Taking inspiration from Martin Fowler (see above), and recalling my brief exposure to the Event Driven Architecture in the last job, my study eventually led me to Microservice. Although they are different things, I am stimulated by seeing many new ideas being used togehter (in short: Message Queue + Async pattern + CQRS + Event Sourcing + Microservice is an interesting combo. I would see an evolution of this idea later on too).
+
+**In the area of Programming Language**, this have been a long tradition in my career. Originally motivated by my struggle with code complexity, it have evolved into a passion for grasping universal principles of programming language (perhaps echoing the Polyglot movement. Alas, it didn't last long - turns out linguistic barrier is real. However, a variant of this idea known as "Polyglot persistence" would continue to influence my thinking). I think this have to do with the fact that once you managed to learn a few programming languages, each from a different paradigm, successive new language become easier to learn.
+
+That being said, I simply love Lisp. While Haskell is cool with its close alliance with pure math, I like the aesthetic of Lisp more in its simplicity and uniformity. By contrast, the dominant language I use in my career, Java, is infamous for being verbose and Enterprisy. You can imagine how overjoyed I was when I discovered Clojure - A marriage between Lisp and Java. Its design also have all the elements I like - functional programming, and nice, simple constructs for treating concurrency in a principled manner. (No, it is not invention out of thin air - it have taken lessons from the CS literature a few decades ago, back in the golden age. This point makes me appreciate it even more)
+
+**Finally, in the area of AI**, hearing the news of AlphaGo, I used my personal time to study reinforcement learning.
 
 ### Act 5 - Back to the Basics, Quest for a better way, and it takes a village to raise a child
 

@@ -140,17 +140,29 @@ A second meta-theme is my constant struggle for *a better way*. It is a tragedy 
 
 However, of the two meta-themes, I ultimately decided that the first is more important, and this comes as a result of me going back to the basics.
 
+#### Fundamentals: Computer Architecture, OS, and Algorithms for Concurrency, Distributed System/Big Data, and Blockchain
 
-Backend:
 
-Frontend:
+#### Backend: The problem of Database and Architecture
 
-AI:
 
-DevOps:
+#### Frontend: Struggles of Javascript, SPA, and toolings growing up
 
-Architecture:
 
-Good practise:
+#### More Frontend: CSS, Web Component, Design System, and HTML5 API
+
+
+#### Special: Blockchain/Web 3, JAMStack, and future architecture
+
+
+#### DevOps and Cloud: From Kubernetes to Openstack, iterating understanding
+
+
+#### AI: Having fun with math, and some surprise in morality and ethics
+
+
+#### Endnote: Seeing the outside world
+
+
 
 [2]: I started out as an Analyst Programmer, and eventually get promoted to Senior title.

@@ -8,6 +8,8 @@ What follows is a simple but tedious story. Forgive me for trying to be exhausti
 
 (Name of Projects/Products are not exact and have been changed to be more generic)
 
+(It turned out to be even longer than I expected. At this length, I don't realistically expect anyone to read all of it - just pick sections you're interested in I guess.)
+
 ### Act 1 - Captive Portal at a telecommunication company
 
 **Theme: Distributed System, MVC framework, the jQuery era, and Server Admin**
@@ -142,14 +144,46 @@ However, of the two meta-themes, I ultimately decided that the first is more imp
 
 #### Fundamentals: Computer Architecture, OS, and Algorithms for Concurrency, Distributed System/Big Data, and Blockchain
 
+Although I have some background knowledges in CS, as my career progressed, it become clear that a more in-depth and systematic investigation is needed to "close the gap" on several questions I have. Some targetted choice of books help. For the rest I find the need to dig down and search the Internet opportunistically. Here's how it mattered:
+
+- Knowing the details of computer architecture beyond the basics of von Neumann architecture - things like cache and virtual memory - lay the groundwork for clearing some confusion on how OS works [3].
+- In turn, knowing how OS interface with the hardware provided the knowledge and confidence needed to actually learn Cloud computing technologies more deeply.
+- Knowing the low level also helped me to understand the fact that *concurrency issue is a cross-cutting concern*: it spans across the whole tech stack so to speak.
+- Perhaps more importantly, on a meta-level, I begin to realize that the design of computer hardware and software is a mutually dependent, symbiotic process.
+- The theory of distributed algorithms/formal models helped clarify issues in concurrency (e.g. The concurrency model of a CPU). It also become the basis for further learning in Big Data Systems.
+- And last but not least, I am lucky to have learned a body of interrelated ideas spanning different topics all in the right order: from Raft algorithm, to replicated state machine, to the append-only log architecture of backend proposed in "Designing Data Intensive Application", to blockchain.
 
 #### Backend: The problem of Database and Architecture
 
 
 #### Frontend: Struggles of Javascript, SPA, and toolings growing up
 
+Although I'm interested in this area, I've had not much of an opportunity to actually do work using up-to-date tech. I think this have to do with the fact that Javascript and its surrounding ecosystem is still too young and exploring the "right way" to grow. So it is inevitable to have some false turn and dead end (Which is pretty much every frontend tech I've used up to this point, even including Angular in some sense as it is rapidly overshadowed by React. I'm simply unlucky in this department, as I shrugged to pretend my unluckiness field doesn't exists.)
+
+Joking aside, in the years before, the churn rate of JS libraries/frameworks/approach is simply crazy (see [this article](https://hackernoon.com/how-it-feels-to-learn-javascript-in-2016-d3a717dd577f#.t3fn4vrpb)). So one could also argue the other way that I am actually lucky to only begin seriously learning this after the dusts have mostly settled. E.g. Webpack is battle-proven and stable and a "safe choice", and most importantly there is a default that hide all the casualty of the last war under the rug. (Flame war I mean. Grunt vs Gulp, bower vs npm, AMD vs CommonJS (before ES6 module is a thing)... with this many point of divisons, I think we are all doomed. Wait, we also have SystemJS vs Webpack, and this kind of debate is kind of revived with the rise of the [next gen build tools](https://css-tricks.com/comparing-the-new-generation-of-build-tools/). Opps.)
+
+Anyway, long story short. In a few iterations I learned modern Javascript, complexities hidden by the tooling (still learning on this part though), and React. I actually played with Clojurescript first though, going through reframe and shadow-cljs, and just stopping shy of managing to grok fulcro (Sorry).
+
+A good thing with frontend is that the "hardware requirement" for hosting is way less than backend, making practise project more possible.
 
 #### More Frontend: CSS, Web Component, Design System, and HTML5 API
+
+Going even lower level. One thing that have bothered me is the deceptive hardness of CSS. Sure, the basics look simple, but once you try to do serious layout work, and find out that modern practise doesn't use `<table>`, all hell break loose - `div`-ception *style*. (Yes, I write html back in school days with a book on Dreamweaver in my room)
+
+This is further confirmed by that one time I need to fix problems in layout in some company website. The night spent debugging is long, tedious, and just feel nasty in general - even worse than concurrency bug in some way.
+
+Even excluding layout, the modern webpage have so many fancy eye-candy and effects (transitions, animations, font, scrolling...), that the number of CSS property exploded.
+
+All these took me to a point where I say *enough is enough*. I want to find out a better mental model for working with CSS, expecting a different paradigm than all the general purpose programming languages I've seen before. So begin my journey.
+
+**Modern CSS**
+
+
+**Just what is a Design System?**
+
+
+**Web is an evolving platform**
+
 
 
 #### Special: Blockchain/Web 3, JAMStack, and future architecture
@@ -166,3 +200,5 @@ However, of the two meta-themes, I ultimately decided that the first is more imp
 
 
 [2]: I started out as an Analyst Programmer, and eventually get promoted to Senior title.
+
+[3]: Traditional university course on OS seems to underemphasize the practical aspect of actually interfacing with the hardware, which is a bit strange given there is a separate course on assembly programming. Perhaps the problem is that the very old Intel 8086/8088 is used for teaching. While it is cool to mention the backward compatibility of modern x86 CPU all the way back to this grandfather, the lack of modern extensions/facilities like protected mode/paging and VT-x prevented me from connecting the dots until this point.

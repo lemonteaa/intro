@@ -140,7 +140,7 @@ In my previous incarnation of a career, a meta-theme that gradually emerges is o
 
 A second meta-theme is my constant struggle for *a better way*. It is a tragedy to see the same disaster over and over again. It is even more of a tragedy if you think you know of a way to stop the cycle, but are powerless to implement and effect change.
 
-However, of the two meta-themes, I ultimately decided that the first is more important, and this comes as a result of me going back to the basics.
+However, of the two meta-themes, I ultimately decided that the first is more important, and this comes as a result of me going back to the basics. But first, we must go over the search for a better way thoroughly before that becomes clear.
 
 #### Fundamentals: Computer Architecture, OS, and Algorithms for Concurrency, Distributed System/Big Data, and Blockchain
 
@@ -153,14 +153,68 @@ Although I have some background knowledges in CS, as my career progressed, it be
 - The theory of distributed algorithms/formal models helped clarify issues in concurrency (e.g. The concurrency model of a CPU). It also become the basis for further learning in Big Data Systems.
 - And last but not least, I am lucky to have learned a body of interrelated ideas spanning different topics all in the right order: from Raft algorithm, to replicated state machine, to the append-only log architecture of backend proposed in "Designing Data Intensive Application", to blockchain.
 
+On another note, special mention to [The morning paper](https://blog.acolyer.org/). Although it have gone into hiatus, the quick review/summary it has of many important papers in CS have helped a lot (in no particular order and not exhaustive):
+
+- [A Survey on Reactive Programming](https://blog.acolyer.org/2015/12/08/a-survey-on-reactive-programming/)
+- [Opening the black box of deep neural networks via information](https://blog.acolyer.org/2017/11/15/opening-the-black-box-of-deep-neural-networks-via-information-part-i/) But see also [this](https://blog.acolyer.org/2017/11/24/on-the-information-bottleneck-theory-of-deep-learning/)
+- [Formal foundations of serverless computing](https://blog.acolyer.org/2019/11/18/formal-foundations-of-serverless-computing/)
+- [The seven tools of causal inference with reflections on machine learning](https://blog.acolyer.org/2018/09/17/the-seven-tools-of-causal-inference-with-reflections-on-machine-learning/)
+
+Some other papers (also not exhaustive):
+
+- [Revisiting the Paxos Algorithm](https://www.microsoft.com/en-us/research/publication/revisiting-paxos-algorithm/)
+- [Collapsing Towers of Interpreters](https://www.cs.purdue.edu/homes/rompf/papers/amin-popl18.pdf) (Theory underlying [GraalVM](https://www.graalvm.org/). See in particular [this listing](https://github.com/oracle/graal/blob/master/docs/Publications.md), and the paper [Practical Partial Evaluation
+for High-Performance Dynamic Language Runtimes](https://chrisseaton.com/rubytruffle/pldi17-truffle/pldi17-truffle.pdf))
+
 #### Backend: The problem of Database and Architecture
 
+My career have so far mostly focused on this area, so it is reasonable to take a step back and look at it more carefully. Summarizing previous experience, I have narrowed down my focus down to two points:
+
+1. You're stuck with either using traditional RDBMS, or some NoSQL solution. For the former, it becomes the "center" of the universe in the whole application/system. Everything of substance ultimately goes into, or out of, the database - the rest are really just sugar-coating/gold-plating. Because of this SQL and schema are everything, but they are tedious to write, not composable/reusable (embedded solutions like stored procedure has their own problem - which is that their language is stuck in something like COBOL), and you have got the *object-relational-impedance-mismatch* problem, which is so hard to solve that it has been called the ["Vietnam of Computer Science"](https://blog.codinghorror.com/object-relational-mapping-is-the-vietnam-of-computer-science/). If you use NoSQL on the other hand, it often ends up being even harder to write correctly as you're now responsible for any (weaker) consistency model you want to ensure, and application become somewhat brittle as the DB access is now more tightly coupled to the exact situation in the app. Moreover, the lack of a standardized language increases risk of vendor lock-in.
+2. Architecture are too expensive to design, too top-down in its role in the Software Development Lifecycle (SDLC) (even in Agile process), and often lack clarity. There is also the problem that education in this area haven't been as widespread as other topics in programming, creating a false stereotype that the traditional MVC/3-tier/3-layer is all there is (this may have improved somewhat in the intervening years with the emergence of cloud, Microservice, Serverless/Lambda, the Edge, etc).
+
+Although I'd like to be as systematic/logical as possible, the fact is, these two are interconnected problems that make software difficult to write and maintain as it scales up due to complexity and a misfit in mental model. So it would occur that the process of exploring a solution is also more nonlinear and intuitive than using pure logic. As I read new ideas from smart people, pieces of the puzzle would connect with some hints of those same idea/theme from piror point in my career (that I already mentioned in the sections above), and eventually all threads would come together.
+
+It turns out that the higher level philosophy is the key. In this regard some pivotal pieces I've read/seen include:
+
+- Rich Hickey's ["The Language of the System"](https://www.youtube.com/watch?v=ROor6_NGIWU) talk, in which he proposes a view of system architecture as ideally being composed from generic, reusable elements.
+- Bret Victor's ["Inventing on Principle"](https://www.youtube.com/watch?v=PUv66718DII) (See also [Learnable Programming](http://worrydream.com/LearnableProgramming/))
+- Other: Anything by Christopher Alexander (like the [Timeless way of Building](https://wiki.c2.com/?TheTimelessWayOfBuilding))
+
+While there is no absolute, my thinking in this area has been guided to go back to principles. Decomposition and more importantly, decomplecting (Terminology by Rich Hickey) concepts that are in fact orthogonal but are misrepresented as one thing is the main tool I use. On the other hand, it is also important to maintain fluidity and openness - especially to real world messiness/complications.
+
+Going back the problems, here's my analysis:
+
+- In Database world, one should decompose the features offered by a system. Taking RDBMS as example:
+  - Relational *data* model - ideal if there are multiple competing view of the same data with no clear winner. Ironically Domain-Driven-Design solves the same problem while allowing you to deal only with aggregate, which is to say objects.
+  - ACID *transaction* semantics - Provide strong consistency by sacrificing availability [5]
+  - Rigid *schema* - great if your system has stabilized and you want predictability, otherwise not (see also: static vs dynamic type religious war, Zach Tellman’s talk)
+- In a similar vein, when it comes to the requirement placed on a system, there is often a conflict between *performance* and *easy mental model*.
+- Inspired by the [C4 model](https://c4model.com/), I prefer to think about System Architecture as not one entity, but three complementary views: the Conceptual, the Physical, and the Code level.
+
+And then, post-hoc justified, this is how my puzzle pieces fit together:
+
+Starting with the base of Event-Driven Architecture with CQRS and Event Sourcing, I then go on to read "Designing Data Intensive Application". Before this book, I already know about Kafka and how interesting [the append-only log abstraction is](https://engineering.linkedin.com/distributed-systems/log-what-every-software-engineer-should-know-about-real-time-datas-unifying). This is also related to the Raft consensus algorithm with the Replicated State Machine paradigm. Indeed, the book do talks about them, and to my joy, in the final Chapter it proposes an Architecture for distributed system based on pushing transactions onto such a log, and have replica replay the log while executing the effect.
+
+And then we have database like [Datomic](https://augustl.com/blog/2016/datomic_the_most_innovative_db_youve_never_heard_of/) and later on, [XTDB](https://xtdb.com/). (It is [renamed from Crux due to legal issue](https://www.xtdb.com/blog/crux-to-xtdb-rename/)) - the later one is essentially an implementation of this proposed Architecture in the form of a Database.
+
+I then separated issues in Database into the underlying execution method, and the language/abstraction/interface it gives to the programmer. On the later part, I find the [RDF triple](https://en.wikipedia.org/wiki/Semantic_triple) data model and the [Datalog](http://www.learndatalogtoday.org/) query language to be much more pleasant to work with than SQL. [6]
+
+Note that due to replication, while the log is regarded as the ultimate source of truth of the data, there is nothing preventing one from having additional database (likely in other paradigm) derive new data, and store/present them in a way that fit other requirements. That is, polyglot persistence.
+
+In fact, this circle of ideas can be pushed even further. In the book "Designing Data Intensive Application", the proposed Architecture is actually an end-to-end one spanning *both* frontend and backend. Outside of this book, similar idea is raised by blog post like [this one](https://tonsky.me/blog/the-web-after-tomorrow/). Here it would appears that GraphQL and Query Subscription (say in Firebase) would be some building block one can use.
+
+Outside of this core, other ideas:
+
+- [The Clean Architecture](https://www.dandoescode.com/blog/clean-architecture-an-introduction/) (also called the Onion/Hexagonal Architecture) (fit well with functional programming) (But see also [this](https://www.jamesmichaelhickey.com/clean-architecture/) - in short mental flexibility is needed. Maybe bring in the C4 view plus ideas in Microservice?)
+- Some things may change when you switch over from an object oriented language to a functional one. Such as replacing the [SOLID principle](https://clojurefun.wordpress.com/2012/09/24/the-vapor-principles-for-functional-dsl-design/).
+- There's actually a third problem I also explored but didn't mention as it's more technical/low level - dealing with Business Transaction. A combination of [long running operation in API design](https://cloud.google.com/apis/design/design_patterns#long_running_operations), [Saga and compensating transaction](https://microservices.io/patterns/data/saga.html), [Transactional outbox](https://microservices.io/patterns/data/transactional-outbox.html), and [idempotency key](https://stripe.com/docs/idempotency) seems to be the right mix that answered it satisfactorily for me.
 
 #### Frontend: Struggles of Javascript, SPA, and toolings growing up
 
-Although I'm interested in this area, I've had not much of an opportunity to actually do work using up-to-date tech. I think this have to do with the fact that Javascript and its surrounding ecosystem is still too young and exploring the "right way" to grow. So it is inevitable to have some false turn and dead end (Which is pretty much every frontend tech I've used up to this point, even including Angular in some sense as it is rapidly overshadowed by React. I'm simply unlucky in this department, as I shrugged to pretend my unluckiness field doesn't exists.)
+Although I'm interested in this area, I've had not much of an opportunity to actually do work using up-to-date tech. I think this have to do with the fact that Javascript and its surrounding ecosystem is still too young and exploring the "right way" to grow. So it is inevitable to have some false turn and dead end (Which is pretty much every frontend tech I've used up to this point, even including Angular in some sense as it is rapidly overshadowed by React [4]. I'm simply unlucky in this department, as I shrugged to pretend my unluckiness field doesn't exists.)
 
-Joking aside, in the years before, the churn rate of JS libraries/frameworks/approach is simply crazy (see [this article](https://hackernoon.com/how-it-feels-to-learn-javascript-in-2016-d3a717dd577f#.t3fn4vrpb)). So one could also argue the other way that I am actually lucky to only begin seriously learning this after the dusts have mostly settled. E.g. Webpack is battle-proven and stable and a "safe choice", and most importantly there is a default that hide all the casualty of the last war under the rug. (Flame war I mean. Grunt vs Gulp, bower vs npm, AMD vs CommonJS (before ES6 module is a thing)... with this many point of divisons, I think we are all doomed. Wait, we also have SystemJS vs Webpack, and this kind of debate is kind of revived with the rise of the [next gen build tools](https://css-tricks.com/comparing-the-new-generation-of-build-tools/). Opps.)
+Joking aside, in the years before, the churn rate of JS libraries/frameworks/approach is simply crazy (see [this article](https://hackernoon.com/how-it-feels-to-learn-javascript-in-2016-d3a717dd577f#.t3fn4vrpb)). So one could also argue the other way that I am actually lucky to only begin seriously learning this after the dusts *apparently* have mostly settled. E.g. Webpack is battle-proven and stable and a "safe choice", and most importantly there is a default that hide all the casualty of the last war under the rug. (Flame war I mean. Grunt vs Gulp, bower vs npm, AMD vs CommonJS (before ES6 module is a thing)... with this many point of divisons, I think we are all doomed. Wait, we also have SystemJS vs Webpack, and this kind of debate is kind of revived with the rise of the [next gen build tools](https://css-tricks.com/comparing-the-new-generation-of-build-tools/). Opps.)
 
 Anyway, long story short. In a few iterations I learned modern Javascript, complexities hidden by the tooling (still learning on this part though), and React. I actually played with Clojurescript first though, going through reframe and shadow-cljs, and just stopping shy of managing to grok fulcro (Sorry).
 
@@ -217,3 +271,9 @@ Eventually, with learning about vxLAN, and clearing some previous confusion I ha
 [2]: I started out as an Analyst Programmer, and eventually get promoted to Senior title.
 
 [3]: Traditional university course on OS seems to underemphasize the practical aspect of actually interfacing with the hardware, which is a bit strange given there is a separate course on assembly programming. Perhaps the problem is that the very old Intel 8086/8088 is used for teaching. While it is cool to mention the backward compatibility of modern x86 CPU all the way back to this grandfather, the lack of modern extensions/facilities like protected mode/paging and VT-x prevented me from connecting the dots until this point.
+
+[4] However, in recent survey AngularJS is making a comeback somewhat. It is important to keep in mind Gatner's Hype Cycle and the fact that popularity is a rather unreliable thing - it is going to ebb and flow always.
+
+[5] Although CAP theorem is a quick way to summarize the situation, it is somewhat of an over-simplification, it's too easy to misinterpret, and reality is more complicated - that's why we have things like [CALM theorem](https://databeta.wordpress.com/2019/01/08/an-overview-of-the-calm-theorem/), [PACELC](https://ardalis.com/cap-pacelc-and-microservices/), or, if you want something else entirely, the [FLP impossibility theorem](https://www.the-paper-trail.org/post/2008-08-13-a-brief-tour-of-flp-impossibility/).
+
+[6] There's still quite some room for innovation simply by being well-read in classical literature and then recycling good ideas from the Early days of CS that end up not becoming mainstream today due to a confluence of economics, luck, and physical constraints. See e.g. [this](https://www.karimarttila.fi/clojure/2022/01/13/datalog-exercises.html).

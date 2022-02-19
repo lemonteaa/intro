@@ -191,6 +191,21 @@ All these took me to a point where I say *enough is enough*. I want to find out 
 
 #### DevOps and Cloud: From Kubernetes to Openstack, iterating understanding
 
+One thing I've learned in my career is that the difference in technological capabilities across different companies can be *tremendous*. Some companies may be on the cutting edge of DevOps and Cloud, doing things like Observability and Service Mesh, and adding global CDN, and using serverless in select components. Meanwhile, some companies may be stuck with using VM for their workload struggling to even just containerize it. A repeat theme is that technologies build on top of each other, hence it seems that there is a kind of [Matthew Effect](https://en.wikipedia.org/wiki/Matthew_effect) at work.
+
+Interestingly, I forgot the exact timeline of myself being able to work with containers. It does come somewhat naturally without explicit learning, and I have felt it to be a productivity booster and easy "win". Strangely though, I didn't incoporate it in my day job. Kubernetes on the other hand is a different matter. Although I also like its idea, its learning curve is, at least initially, higher. The yaml syntax is clunky to work with to say the least.
+
+In an effort to gain hands-on experience in this area, I started out trying to install Openstack on my dev machine using a VM. Manual installation is quite difficult taking me a long time, and even though it worked in the end, I have difficulty in installing the less used/non-core components. The relatively heavy hardware requirement also forbid me from doing extensive experimentation for some time.
+
+On the next round I go back to Kubernetes. While learning its basic command, like `kubectl create deployment` or `kubectl apply`, is "easy", getting access to deeper aspect is harder. Mainly, I don't know where to start.
+
+This would get solved through some serendipity. First I come across a course on Kubernetes Security on Linux Academy. This has the side effect of revealing some of Kubernetes's underlying component (`kube-apiserver` and `etcd` as the backing store etc). Then, in trying to use some cloud based, shared Kubernetes cluster's namespace, I did research on ingress, and this is the beginning of me discoverying kubernetes's vast ecosystem.
+
+Later on I would stumble across an article that explains kubernetes networking internal. Again, lucky to be in the right place at the right time - I have studied more OS and learnt just enough about Linux Networking Stack so that the article "clicked".
+
+Eventually, with learning about vxLAN, and clearing some previous confusion I had on Computer Networking and how Router works, I then come across a blog that explains Openstack internal in some depth. This re-ignited my interest in this topic.
+
+
 
 #### AI: Having fun with math, and some surprise in morality and ethics
 

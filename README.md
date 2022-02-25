@@ -42,6 +42,9 @@ They are filed under the github organization [hkitsmallpotato](https://github.co
 - [Hands on Labs for DevOps](https://github.com/hkitsmallpotato/HandsOn_DevOps_Cloud)
 - (Haven't gotten to the "main dish" yet)[Hands on Labs for Clojure](https://github.com/hkitsmallpotato/HandsOn_Fullstack_Clojure)
 
+## Learning
+
+- [My GCP Learning Profile (MLOps)](https://www.cloudskillsboost.google/public_profiles/d7893940-30db-42e5-bd09-10f024054fc5)
 
 ## Libraries, Toys, and Experiments
 

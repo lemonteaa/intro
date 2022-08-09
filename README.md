@@ -41,16 +41,25 @@ They are filed under the github organization [hkitsmallpotato](https://github.co
 
 - [Hands on Labs for DevOps](https://github.com/hkitsmallpotato/HandsOn_DevOps_Cloud)
 - (Haven't gotten to the "main dish" yet)[Hands on Labs for Clojure](https://github.com/hkitsmallpotato/HandsOn_Fullstack_Clojure)
+- [Hands on Labs for Cloud Computing/OpenStack](https://github.com/hkitsmallpotato/katacoda-labs/) (*)
+
+(*): Doesn't work after katacoda folded, but left for reference.
 
 ## Learning
 
-- [My GCP Learning Profile (MLOps)](https://www.cloudskillsboost.google/public_profiles/d7893940-30db-42e5-bd09-10f024054fc5)
+- [My GCP Learning Profile (MLOps, Production ML)](https://www.cloudskillsboost.google/public_profiles/d7893940-30db-42e5-bd09-10f024054fc5)
+- [Notebooks following other people's tutorials on Big Data, ML, and AI](https://github.com/lemonteaa/bigdata-ai-ml-kitchen-sink)
+- [Math Revision Notes on AI and ML](https://github.com/lemonteaa/revision-math-note-ai-ml)
+  - Reproducing Kernel Hilbert Space and SVM
 
 ## Libraries, Toys, and Experiments
 
 - Some cute, good old Lisp code snippet: [cl-lisp-lab](https://github.com/lemonteaa/cl-lisp-lab)
 - A small clojure library: [relabel](https://github.com/lemonteaa/relabel)
 - Just for fun: [rusty-raytracer](https://github.com/lemonteaa/rusty-raytracer), [twilio-ivr-fake-bank](https://github.com/lemonteaa/twilio_ivr_fake_bank)
+- Setup I use to turn a k8s into a dev enviornment: [dev-env-vscode-k8s](https://github.com/lemonteaa/dev-env-vscode-k8s)
+- Lab to DIY core algorithms/designs powering modern softwares: [Software Engineering Lab](https://github.com/lemonteaa/software-engineering-lab)
+  - Functional Reactive Programming
 
 ### WIP on other people's library
 

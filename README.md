@@ -74,6 +74,8 @@ They are filed under the github organization [hkitsmallpotato](https://github.co
 
 See [here](https://lemonteaa.github.io/drafts/).
 
+Also, my [other github gists](https://gist.github.com/lemonteaa/) have more recent brewing ideas.
+
 ## Others
 
 I've written a bunch of notes on pure and applied math, respectively, on

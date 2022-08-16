@@ -2,6 +2,7 @@
 
 ## Articles
 
+- Aug 17, 2022 (*)[Unpeeling Clojurescript Tooling - Shadow-cljs](https://github.com/lemonteaa/new-blog-content-staging/blob/main/Unpeeling%20Clojurescript%20Tooling%20Shadow%20cljs.md)
 - Aug 14, 2022 (*)[Experience Sharing and Opinion Piece: DIY Clojure Web Framework? Lesson Learned](https://github.com/lemonteaa/new-blog-content-staging/blob/main/Experience%20Sharing%20and%20Opinion%20Piece%20DIY%20Clojure%20Web%20Framework%20Lesson%20Learned.md)
 - Jun 25, 2022 (*)[Hitchhiker's Guide to OpenStack](https://github.com/lemonteaa/new-blog-content-staging/blob/main/Hitchhiker's%20Guide%20to%20OpenStack.md)
 - Jan 24, 2022 (*)[Adopting MLOps incrementally - mlflow as MLOps served a la carte](https://github.com/lemonteaa/new-blog-content-staging/blob/main/Adopting%20MLOps%20incrementally%20-%20mlflow%20as%20MLOps%20served%20a%20la%20carte.md)

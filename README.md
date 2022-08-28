@@ -2,6 +2,7 @@
 
 ## Articles
 
+- Aug 29, 2022 (*)[Prometheus, Traefik, and Horizontal Pod Autoscalar](https://github.com/lemonteaa/new-blog-content-staging/blob/main/Prometheus%2C%20Traefik%2C%20and%20Horizontal%20Pod%20Autoscalar.md)
 - Aug 26, 2022 (*)[Architecture Beyond the 3-tier](https://github.com/lemonteaa/new-blog-content-staging/blob/main/Architecture%20Beyond%20the%203-tier.md)
 - Aug 17, 2022 (*)[Unpeeling Clojurescript Tooling - Shadow-cljs](https://github.com/lemonteaa/new-blog-content-staging/blob/main/Unpeeling%20Clojurescript%20Tooling%20Shadow%20cljs.md)
 - Aug 14, 2022 (*)[Experience Sharing and Opinion Piece: DIY Clojure Web Framework? Lesson Learned](https://github.com/lemonteaa/new-blog-content-staging/blob/main/Experience%20Sharing%20and%20Opinion%20Piece%20DIY%20Clojure%20Web%20Framework%20Lesson%20Learned.md)
